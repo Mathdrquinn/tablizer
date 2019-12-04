@@ -1,6 +1,6 @@
 {
-  "homepage": "http://brendan-quinn.xyz",
-  "name": "tablize",
+  "homepage": "http://brendan-quinn.xyz/tablizer",
+  "name": "tablizer",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
