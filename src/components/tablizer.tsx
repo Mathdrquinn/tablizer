@@ -152,7 +152,12 @@ export default class Tablizer extends React.Component<ITablizerProps, ITablizerS
         <div style={{ flexGrow: 1 }}>
           <table>
             <thead>
-              <tr></tr>
+              <tr>
+                {this.state.prependText ? (<th>PrePend</th>) : null}
+                <th>Main Data</th>
+                {this.state.mapText ? <th>Mapped</th> : null}
+                {this.state.appendText ? (<th>Append</th>) : null}
+              </tr>
             </thead>
             <tbody>
               {this.state.mapText.split(Tablizer.getDelimiter(this.state.mapTextDelimiter)).map((mapData, i) => {
