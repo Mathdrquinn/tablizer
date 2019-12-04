@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d294357c8a73452e894c316a151dbcbb",
+    "revision": "6aedd3d083e46728876d06b302d06afe",
     "url": "/tablizer/index.html"
   },
   {
-    "revision": "3cb2c08991c5543e1fff",
+    "revision": "b727de128135fa99ff8e",
     "url": "/tablizer/static/css/main.184f8e48.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/tablizer/static/js/2.7acd75fd.chunk.js"
   },
   {
-    "revision": "3cb2c08991c5543e1fff",
-    "url": "/tablizer/static/js/main.7bc48671.chunk.js"
+    "revision": "b727de128135fa99ff8e",
+    "url": "/tablizer/static/js/main.e8414bb2.chunk.js"
   },
   {
     "revision": "a422fd58e07fba92f52a",
