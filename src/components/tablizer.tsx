@@ -15,6 +15,8 @@ export interface ITablizerState {
   appendText: string;
   appendTextDelimiter: Delimiter;
   appendTextType: Recurrance;
+  mapText: string;
+  mapTextDelimiter: Delimiter;
 }
 
 export default class Tablizer extends React.Component<ITablizerProps, ITablizerState> {
@@ -26,7 +28,9 @@ export default class Tablizer extends React.Component<ITablizerProps, ITablizerS
     prependTextType: 'repeating',
     appendText: 'a, b, c',
     appendTextDelimiter: 'comma space',
-    appendTextType: 'repeating'
+    appendTextType: 'repeating',
+    mapText: 'Once, Again',
+    mapTextDelimiter: 'comma space',
   };
 
   updateText: React.ChangeEventHandler<HTMLTextAreaElement> = (e) => {
@@ -51,6 +55,14 @@ export default class Tablizer extends React.Component<ITablizerProps, ITablizerS
 
   updatePrependTextDelimiter = (d: Delimiter): React.MouseEventHandler<HTMLButtonElement> => (e) => {
     return this.setState({ prependTextDelimiter: d })
+  }
+
+  updateMapText: React.ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+    return this.setState({ mapText: e.currentTarget.value })
+  }
+
+  updateMapTextDelimiter = (d: Delimiter): React.MouseEventHandler<HTMLButtonElement> => (e) => {
+    return this.setState({ mapTextDelimiter: d })
   }
 
   static getDelimiter(d: Delimiter) {
@@ -109,6 +121,20 @@ export default class Tablizer extends React.Component<ITablizerProps, ITablizerS
             </label>
           </fieldset>
           <fieldset>
+            <legend>Mapp Data to each record</legend>
+            <label>Append:
+              <br />
+              <textarea onChange={this.updateMapText} value={this.state.mapText}></textarea>
+            </label>
+            <label>Select delimiter:
+            <button type="button" onClick={this.updateMapTextDelimiter('comma')} disabled={this.state.mapTextDelimiter === 'comma'}>Comma</button>
+              <button type="button" onClick={this.updateMapTextDelimiter('comma space')} disabled={this.state.mapTextDelimiter === 'comma space'}>Comma with space</button>
+              <button type="button" onClick={this.updateMapTextDelimiter('tab')} disabled={this.state.mapTextDelimiter === 'tab'}>Tab</button>
+              <button type="button" onClick={this.updateMapTextDelimiter('space')} disabled={this.state.mapTextDelimiter === 'space'}>Space</button>
+              <button type="button" onClick={this.updateMapTextDelimiter('newline')} disabled={this.state.mapTextDelimiter === 'newline'}>NewLine</button>
+            </label>
+          </fieldset>
+          <fieldset>
             <legend>Append Data</legend>
             <label>Append:
               <br />
@@ -129,20 +155,23 @@ export default class Tablizer extends React.Component<ITablizerProps, ITablizerS
               <tr></tr>
             </thead>
             <tbody>
-              {this.state.text.split(Tablizer.getDelimiter(this.state.textDelimiter)).map((data, i, dataArray) => {
-                const prependDataList = this.state.prependText === '' ? null : this.state.prependText.split(Tablizer.getDelimiter(this.state.prependTextDelimiter));
-                const prependData = prependDataList && prependDataList.slice(i % prependDataList.length, (i % prependDataList.length) + 1);
+              {this.state.mapText.split(Tablizer.getDelimiter(this.state.mapTextDelimiter)).map((mapData, i) => {
+                return (this.state.text.split(Tablizer.getDelimiter(this.state.textDelimiter)).map((data, i, dataArray) => {
+                  const prependDataList = this.state.prependText === '' ? null : this.state.prependText.split(Tablizer.getDelimiter(this.state.prependTextDelimiter));
+                  const prependData = prependDataList && prependDataList.slice(i % prependDataList.length, (i % prependDataList.length) + 1);
 
-                const appendDataList = this.state.appendText === '' ? null : this.state.appendText.split(Tablizer.getDelimiter(this.state.appendTextDelimiter));
-                const appendData = appendDataList && appendDataList.slice(i % appendDataList.length, (i % appendDataList.length) + 1);
+                  const appendDataList = this.state.appendText === '' ? null : this.state.appendText.split(Tablizer.getDelimiter(this.state.appendTextDelimiter));
+                  const appendData = appendDataList && appendDataList.slice(i % appendDataList.length, (i % appendDataList.length) + 1);
 
-                return (
-                  <tr key={i + data}>
-                    {prependData ? (<td>{prependData}</td>) : null}
-                    <td>{data}</td>
-                    {appendData ? (<td>{appendData}</td>) : null}
-                  </tr>
-                )
+                  return (
+                    <tr key={i + data + mapData}>
+                      {prependData ? (<td>{prependData}</td>) : null}
+                      <td>{data}</td>
+                      {mapData ? <td>{mapData}</td> : null}
+                      {appendData ? (<td>{appendData}</td>) : null}
+                    </tr>
+                  )
+                }));
               })}
             </tbody>
           </table>
