@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/tablizer/static/css/main.fd9e0226.chunk.css",
-    "main.js": "/tablizer/static/js/main.0bff0300.chunk.js",
-    "main.js.map": "/tablizer/static/js/main.0bff0300.chunk.js.map",
+    "main.css": "/tablizer/static/css/main.a92a1303.chunk.css",
+    "main.js": "/tablizer/static/js/main.a9610557.chunk.js",
+    "main.js.map": "/tablizer/static/js/main.a9610557.chunk.js.map",
     "runtime-main.js": "/tablizer/static/js/runtime-main.9142fee7.js",
     "runtime-main.js.map": "/tablizer/static/js/runtime-main.9142fee7.js.map",
     "static/js/2.7acd75fd.chunk.js": "/tablizer/static/js/2.7acd75fd.chunk.js",
     "static/js/2.7acd75fd.chunk.js.map": "/tablizer/static/js/2.7acd75fd.chunk.js.map",
     "index.html": "/tablizer/index.html",
-    "precache-manifest.75db3130e80cde2e696838b63c9691a8.js": "/tablizer/precache-manifest.75db3130e80cde2e696838b63c9691a8.js",
+    "precache-manifest.5b99f42106a10092d1ad353ca2acc9f6.js": "/tablizer/precache-manifest.5b99f42106a10092d1ad353ca2acc9f6.js",
     "service-worker.js": "/tablizer/service-worker.js",
-    "static/css/main.fd9e0226.chunk.css.map": "/tablizer/static/css/main.fd9e0226.chunk.css.map"
+    "static/css/main.a92a1303.chunk.css.map": "/tablizer/static/css/main.a92a1303.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.9142fee7.js",
     "static/js/2.7acd75fd.chunk.js",
-    "static/css/main.fd9e0226.chunk.css",
-    "static/js/main.0bff0300.chunk.js"
+    "static/css/main.a92a1303.chunk.css",
+    "static/js/main.a9610557.chunk.js"
   ]
 }

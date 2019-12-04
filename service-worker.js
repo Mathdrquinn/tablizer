@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/tablizer/precache-manifest.75db3130e80cde2e696838b63c9691a8.js"
+  "/tablizer/precache-manifest.5b99f42106a10092d1ad353ca2acc9f6.js"
 );
 
 self.addEventListener('message', (event) => {
