@@ -19,22 +19,42 @@ export interface ITablizerState {
   mapTextDelimiter: Delimiter;
 }
 
+const defaultState: ITablizerState = {
+  text: 'this, is, the, beginning, of, a, very, simple, app',
+  textDelimiter: 'comma space',
+  prependText: '1, 2',
+  prependTextDelimiter: 'comma space',
+  prependTextType: 'repeating',
+  appendText: 'a, b, c',
+  appendTextDelimiter: 'comma space',
+  appendTextType: 'repeating',
+  mapText: 'Once, Again',
+  mapTextDelimiter: 'comma space',
+};
+
+const clearedState: ITablizerState = {
+  text: '',
+  textDelimiter: 'comma space',
+  prependText: '',
+  prependTextDelimiter: 'comma space',
+  prependTextType: 'repeating',
+  appendText: '',
+  appendTextDelimiter: 'comma space',
+  appendTextType: 'repeating',
+  mapText: '',
+  mapTextDelimiter: 'comma space',
+};
+
+
 export default class Tablizer extends React.Component<ITablizerProps, ITablizerState> {
-  state: ITablizerState = {
-    text: 'this, is, the, beginning, of, a, very, simple, app',
-    textDelimiter: 'comma space',
-    prependText: '1, 2',
-    prependTextDelimiter: 'comma space',
-    prependTextType: 'repeating',
-    appendText: 'a, b, c',
-    appendTextDelimiter: 'comma space',
-    appendTextType: 'repeating',
-    mapText: 'Once, Again',
-    mapTextDelimiter: 'comma space',
-  };
+  state: ITablizerState = defaultState;
 
   updateText: React.ChangeEventHandler<HTMLTextAreaElement> = (e) => {
     return this.setState({ text: e.currentTarget.value })
+  }
+
+  clearText: React.MouseEventHandler<HTMLButtonElement> = () => {
+    return this.setState({ text: '' })
   }
 
   updateTextDelimeter = (d: Delimiter): React.MouseEventHandler<HTMLButtonElement> => (e) => {
@@ -45,12 +65,20 @@ export default class Tablizer extends React.Component<ITablizerProps, ITablizerS
     return this.setState({ appendText: e.currentTarget.value })
   }
 
+  clearAppendText: React.MouseEventHandler<HTMLButtonElement> = () => {
+    return this.setState({ appendText: '' })
+  }
+
   updateAppendTextDelimiter = (d: Delimiter): React.MouseEventHandler<HTMLButtonElement> => (e) => {
     return this.setState({ appendTextDelimiter: d })
   }
 
   updatePrependText: React.ChangeEventHandler<HTMLTextAreaElement> = (e) => {
     return this.setState({ prependText: e.currentTarget.value })
+  }
+
+  clearPrependText: React.MouseEventHandler<HTMLButtonElement> = () => {
+    return this.setState({ prependText: '' })
   }
 
   updatePrependTextDelimiter = (d: Delimiter): React.MouseEventHandler<HTMLButtonElement> => (e) => {
@@ -61,8 +89,16 @@ export default class Tablizer extends React.Component<ITablizerProps, ITablizerS
     return this.setState({ mapText: e.currentTarget.value })
   }
 
+  clearMapText: React.MouseEventHandler<HTMLButtonElement> = () => {
+    return this.setState({ mapText: '' })
+  }
+
   updateMapTextDelimiter = (d: Delimiter): React.MouseEventHandler<HTMLButtonElement> => (e) => {
     return this.setState({ mapTextDelimiter: d })
+  }
+
+  clearAllText: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    return this.setState(clearedState)
   }
 
   static getDelimiter(d: Delimiter) {
@@ -92,6 +128,10 @@ export default class Tablizer extends React.Component<ITablizerProps, ITablizerS
     return (
       <div style={{ display: 'flex' }}>
         <form onSubmit={(e) => e.preventDefault()} style={{ flexBasis: '320px', marginRight: '2rem' }}>
+          <label>
+            Clear everything:
+            <button type="button" onClick={this.clearAllText}>Clear Table</button>
+          </label>
           <fieldset>
             <legend>Main Data</legend>
             <label>Paste text here:
@@ -99,11 +139,16 @@ export default class Tablizer extends React.Component<ITablizerProps, ITablizerS
               <textarea onChange={this.updateText} value={this.state.text}></textarea>
             </label>
             <label>Select delimiter:
-            <button type="button" onClick={this.updateTextDelimeter('comma')} disabled={this.state.textDelimiter === 'comma'}>Comma</button>
+            <br />
+              <button type="button" onClick={this.updateTextDelimeter('comma')} disabled={this.state.textDelimiter === 'comma'}>Comma</button>
               <button type="button" onClick={this.updateTextDelimeter('comma space')} disabled={this.state.textDelimiter === 'comma space'}>Comma with space</button>
               <button type="button" onClick={this.updateTextDelimeter('tab')} disabled={this.state.textDelimiter === 'tab'}>Tab</button>
               <button type="button" onClick={this.updateTextDelimeter('space')} disabled={this.state.textDelimiter === 'space'}>Space</button>
               <button type="button" onClick={this.updateTextDelimeter('newline')} disabled={this.state.textDelimiter === 'newline'}>NewLine</button>
+            </label>
+            <label>
+              Clear field:
+            <button type="button" onClick={this.clearText}>Clear</button>
             </label>
           </fieldset>
           <fieldset>
@@ -113,25 +158,35 @@ export default class Tablizer extends React.Component<ITablizerProps, ITablizerS
               <textarea onChange={this.updatePrependText} value={this.state.prependText}></textarea>
             </label>
             <label>Select delimiter:
-            <button type="button" onClick={this.updatePrependTextDelimiter('comma')} disabled={this.state.prependTextDelimiter === 'comma'}>Comma</button>
+            <br />
+              <button type="button" onClick={this.updatePrependTextDelimiter('comma')} disabled={this.state.prependTextDelimiter === 'comma'}>Comma</button>
               <button type="button" onClick={this.updatePrependTextDelimiter('comma space')} disabled={this.state.prependTextDelimiter === 'comma space'}>Comma with space</button>
               <button type="button" onClick={this.updatePrependTextDelimiter('tab')} disabled={this.state.prependTextDelimiter === 'tab'}>Tab</button>
               <button type="button" onClick={this.updatePrependTextDelimiter('space')} disabled={this.state.prependTextDelimiter === 'space'}>Space</button>
               <button type="button" onClick={this.updatePrependTextDelimiter('newline')} disabled={this.state.prependTextDelimiter === 'newline'}>NewLine</button>
             </label>
+            <label>
+              Clear field:
+            <button type="button" onClick={this.clearPrependText}>Clear</button>
+            </label>
           </fieldset>
           <fieldset>
-            <legend>Mapp Data to each record</legend>
-            <label>Append:
+            <legend>Map Data to each record</legend>
+            <label>Mapping:
               <br />
               <textarea onChange={this.updateMapText} value={this.state.mapText}></textarea>
             </label>
             <label>Select delimiter:
-            <button type="button" onClick={this.updateMapTextDelimiter('comma')} disabled={this.state.mapTextDelimiter === 'comma'}>Comma</button>
+            <br />
+              <button type="button" onClick={this.updateMapTextDelimiter('comma')} disabled={this.state.mapTextDelimiter === 'comma'}>Comma</button>
               <button type="button" onClick={this.updateMapTextDelimiter('comma space')} disabled={this.state.mapTextDelimiter === 'comma space'}>Comma with space</button>
               <button type="button" onClick={this.updateMapTextDelimiter('tab')} disabled={this.state.mapTextDelimiter === 'tab'}>Tab</button>
               <button type="button" onClick={this.updateMapTextDelimiter('space')} disabled={this.state.mapTextDelimiter === 'space'}>Space</button>
               <button type="button" onClick={this.updateMapTextDelimiter('newline')} disabled={this.state.mapTextDelimiter === 'newline'}>NewLine</button>
+            </label>
+            <label>
+              Clear field:
+            <button type="button" onClick={this.clearMapText}>Clear</button>
             </label>
           </fieldset>
           <fieldset>
@@ -141,13 +196,22 @@ export default class Tablizer extends React.Component<ITablizerProps, ITablizerS
               <textarea onChange={this.updateAppendText} value={this.state.appendText}></textarea>
             </label>
             <label>Select delimiter:
-            <button type="button" onClick={this.updateAppendTextDelimiter('comma')} disabled={this.state.appendTextDelimiter === 'comma'}>Comma</button>
+              <br />
+              <button type="button" onClick={this.updateAppendTextDelimiter('comma')} disabled={this.state.appendTextDelimiter === 'comma'}>Comma</button>
               <button type="button" onClick={this.updateAppendTextDelimiter('comma space')} disabled={this.state.appendTextDelimiter === 'comma space'}>Comma with space</button>
               <button type="button" onClick={this.updateAppendTextDelimiter('tab')} disabled={this.state.appendTextDelimiter === 'tab'}>Tab</button>
               <button type="button" onClick={this.updateAppendTextDelimiter('space')} disabled={this.state.appendTextDelimiter === 'space'}>Space</button>
               <button type="button" onClick={this.updateAppendTextDelimiter('newline')} disabled={this.state.appendTextDelimiter === 'newline'}>NewLine</button>
             </label>
+            <label>
+              Clear field:
+            <button type="button" onClick={this.clearText}>Clear</button>
+            </label>
           </fieldset>
+          <label>
+            Clear everything:
+            <button type="button" onClick={this.clearAppendText}>Clear Table</button>
+          </label>
         </form>
         <div style={{ flexGrow: 1 }}>
           <table>
@@ -168,7 +232,7 @@ export default class Tablizer extends React.Component<ITablizerProps, ITablizerS
                   const appendDataList = this.state.appendText === '' ? null : this.state.appendText.split(Tablizer.getDelimiter(this.state.appendTextDelimiter));
                   const appendData = appendDataList && appendDataList.slice(i % appendDataList.length, (i % appendDataList.length) + 1);
 
-                  return (
+                  return !data ? null : (
                     <tr key={i + data + mapData}>
                       {prependData ? (<td>{prependData}</td>) : null}
                       <td>{data}</td>
