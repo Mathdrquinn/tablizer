@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.6f662b13.chunk.css",
-    "main.js": "/static/js/main.d48196dc.chunk.js",
-    "main.js.map": "/static/js/main.d48196dc.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.6830ec56.js",
-    "runtime-main.js.map": "/static/js/runtime-main.6830ec56.js.map",
-    "static/js/2.ba0491b1.chunk.js": "/static/js/2.ba0491b1.chunk.js",
-    "static/js/2.ba0491b1.chunk.js.map": "/static/js/2.ba0491b1.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.2a44b474ef0cbe5d34bf1df2f1c96186.js": "/precache-manifest.2a44b474ef0cbe5d34bf1df2f1c96186.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.6f662b13.chunk.css.map": "/static/css/main.6f662b13.chunk.css.map"
+    "main.css": "/tablizer/static/css/main.6f662b13.chunk.css",
+    "main.js": "/tablizer/static/js/main.c9a558dd.chunk.js",
+    "main.js.map": "/tablizer/static/js/main.c9a558dd.chunk.js.map",
+    "runtime-main.js": "/tablizer/static/js/runtime-main.f44c8b3a.js",
+    "runtime-main.js.map": "/tablizer/static/js/runtime-main.f44c8b3a.js.map",
+    "static/js/2.ba0491b1.chunk.js": "/tablizer/static/js/2.ba0491b1.chunk.js",
+    "static/js/2.ba0491b1.chunk.js.map": "/tablizer/static/js/2.ba0491b1.chunk.js.map",
+    "index.html": "/tablizer/index.html",
+    "precache-manifest.3e9fde247742fc19cb1f76ce09ba365d.js": "/tablizer/precache-manifest.3e9fde247742fc19cb1f76ce09ba365d.js",
+    "service-worker.js": "/tablizer/service-worker.js",
+    "static/css/main.6f662b13.chunk.css.map": "/tablizer/static/css/main.6f662b13.chunk.css.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.6830ec56.js",
+    "static/js/runtime-main.f44c8b3a.js",
     "static/js/2.ba0491b1.chunk.js",
     "static/css/main.6f662b13.chunk.css",
-    "static/js/main.d48196dc.chunk.js"
+    "static/js/main.c9a558dd.chunk.js"
   ]
 }
