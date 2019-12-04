@@ -78,8 +78,8 @@ export default class Tablizer extends React.Component<ITablizerProps, ITablizerS
 
   public render() {
     return (
-      <>
-        <form onSubmit={(e) => e.preventDefault()}>
+      <div style={{ display: 'flex' }}>
+        <form onSubmit={(e) => e.preventDefault()} style={{ flexBasis: '320px', marginRight: '2rem' }}>
           <fieldset>
             <legend>Main Data</legend>
             <label>Paste text here:
@@ -123,29 +123,31 @@ export default class Tablizer extends React.Component<ITablizerProps, ITablizerS
             </label>
           </fieldset>
         </form>
-        <table>
-          <thead>
-            <tr></tr>
-          </thead>
-          <tbody>
-            {this.state.text.split(Tablizer.getDelimiter(this.state.textDelimiter)).map((data, i, dataArray) => {
-              const prependDataList = this.state.prependText === '' ? null : this.state.prependText.split(Tablizer.getDelimiter(this.state.prependTextDelimiter));
-              const prependData = prependDataList && prependDataList.slice(i % prependDataList.length, (i % prependDataList.length) + 1);
+        <div style={{ flexGrow: 1 }}>
+          <table>
+            <thead>
+              <tr></tr>
+            </thead>
+            <tbody>
+              {this.state.text.split(Tablizer.getDelimiter(this.state.textDelimiter)).map((data, i, dataArray) => {
+                const prependDataList = this.state.prependText === '' ? null : this.state.prependText.split(Tablizer.getDelimiter(this.state.prependTextDelimiter));
+                const prependData = prependDataList && prependDataList.slice(i % prependDataList.length, (i % prependDataList.length) + 1);
 
-              const appendDataList = this.state.appendText === '' ? null : this.state.appendText.split(Tablizer.getDelimiter(this.state.appendTextDelimiter));
-              const appendData = appendDataList && appendDataList.slice(i % appendDataList.length, (i % appendDataList.length) + 1);
+                const appendDataList = this.state.appendText === '' ? null : this.state.appendText.split(Tablizer.getDelimiter(this.state.appendTextDelimiter));
+                const appendData = appendDataList && appendDataList.slice(i % appendDataList.length, (i % appendDataList.length) + 1);
 
-              return (
-                <tr key={i + data}>
-                  {prependData ? (<td>{prependData}</td>) : null}
-                  <td>{data}</td>
-                  {appendData ? (<td>{appendData}</td>) : null}
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
-      </>
+                return (
+                  <tr key={i + data}>
+                    {prependData ? (<td>{prependData}</td>) : null}
+                    <td>{data}</td>
+                    {appendData ? (<td>{appendData}</td>) : null}
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
     );
   }
 }
